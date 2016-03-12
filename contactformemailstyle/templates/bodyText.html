@@ -1,0 +1,15 @@
+{% if postedMessage is iterable %}
+  {% for name, value in postedMessage if name != 'body' and value != '' %}
+    {%- if value %}
+      {{- name }}: {% if value is iterable %} {{ value | join(', ') }} {% else %} {{ value }} {% endif %}
+    {% endif %}
+
+  {% endfor %}
+{% endif %}
+
+{% if postedMessage is iterable and postedMessage.body is defined %}
+  {{ postedMessage.body }}
+{% elseif postedMessage is not iterable %}
+  {{ postedMessage }}
+{% endif %}
+              

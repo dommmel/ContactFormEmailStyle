@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width"/>
+  </head>
+  <body>
+    <table class="body">
+      <tr>
+        <td class="center" align="center" valign="top">
+          <center>
+            <table cellpadding="5px" cellspacing="0">
+              {% if postedMessage is iterable %}
+                  {% for name, value in postedMessage if name != 'body' and value != '' %}
+                      {% if value %}
+                      <tr>
+                          <td>{{ name }}</td>
+                          <td>
+                          {% if value is iterable %} {{ value | join(', ') }} {% else %} {{ value }} {% endif %}
+                          </td>
+                      </tr>
+                      {% endif %}
+                  {% endfor %}
+              {% endif %}
+             <tr>
+                <td colspan="2">
+                    <br>
+                    <p>{{ 'Message' | t }}:</p>
+                    <p>
+                    {% if postedMessage is iterable and postedMessage.body is defined %}
+                        {{ postedMessage.body | nl2br }}
+                    {% elseif postedMessage is not iterable %}
+                        {{ postedMessage | nl2br }}
+                    {% endif %}
+                    </p>
+                </td>
+              </tr>
+            </table>
+          </center>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
