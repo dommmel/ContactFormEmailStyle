@@ -27,7 +27,7 @@ class ContactFormEmailStylePlugin extends BasePlugin {
     }
 
     public function init() {
-        craft()->on('contactForm.beforeCompile', function(ContactFormMessageEvent $event) {
+        craft()->on('contactForm.beforeMessageCompile', function(ContactFormMessageEvent $event) {
             $postedMessage = $event->params['postedMessage'];
         
             if (is_array($postedMessage))
