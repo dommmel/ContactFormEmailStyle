@@ -29,7 +29,8 @@ class ContactFormEmailStylePlugin extends BasePlugin {
     public function init() {
         craft()->on('contactForm.beforeMessageCompile', function(ContactFormMessageEvent $event) {
             $postedMessage = $event->params['postedMessage'];
-        
+            $savedBody = false;
+
             if (is_array($postedMessage))
             {
                 // Capture all of the message fields on the model in case there's a validation error
